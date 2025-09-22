@@ -6,16 +6,26 @@ type HomeHandler struct {
 	router fiber.Router
 }
 
+// /api/
+// /api/error
+
 // Функция конструктор
 func NewHandler(router fiber.Router) {
 	h := &HomeHandler{
 		router: router,
 	}
-	// Роутинг
-	h.router.Get("/", h.home) // При Get запросе по адресу / вызываем функцию home
+	// Группы роутов
+	api := h.router.Group("/api")
+	api.Get("/", h.home) // При Get запросе по адресу / вызываем функцию home
+	api.Get("/error", h.error)
 }
 
 // Хэндлер для главной страницы
 func (h *HomeHandler) home(c *fiber.Ctx) error {
 	return c.SendString("Hello")
+}
+
+// Хэндлер для страницы error
+func (h *HomeHandler) error(c *fiber.Ctx) error {
+	return c.SendString("Error")
 }
