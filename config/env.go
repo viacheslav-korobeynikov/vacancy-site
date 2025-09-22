@@ -62,12 +62,24 @@ func getBool(key string, defaultValue bool) bool {
 
 // Структура конфигурации БД
 type DatabaseConfig struct {
-	url string
+	Url string
 }
 
 // Извление конфига БД из переменной окружения
 func NewDatabaseConfig() *DatabaseConfig {
 	return &DatabaseConfig{
-		url: getString("DATABASE_URL", ""),
+		Url: getString("DATABASE_URL", ""),
+	}
+}
+
+// Структура кофига логов
+type LogConfig struct {
+	Level int
+}
+
+// Извление конфига БД из переменной окружения
+func NewLogConfig() *LogConfig {
+	return &LogConfig{
+		Level: getInt("LOG_LEVEL", 0),
 	}
 }
