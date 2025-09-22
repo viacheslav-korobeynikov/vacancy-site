@@ -15,8 +15,8 @@ func NewHandler(router fiber.Router) {
 		router: router,
 	}
 	// Группы роутов
-	api := h.router.Group("/api")
-	api.Get("/", h.home) // При Get запросе по адресу / вызываем функцию home
+	api := h.router.Group("/api") // Добавление группы роутов, вторым параметром можно добавить middleware ко всей группе
+	api.Get("/", h.home)          // При Get запросе по адресу / вызываем функцию home
 	api.Get("/error", h.error)
 }
 
