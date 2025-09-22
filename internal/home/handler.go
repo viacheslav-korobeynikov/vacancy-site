@@ -22,7 +22,7 @@ func NewHandler(router fiber.Router) {
 
 // Хэндлер для главной страницы
 func (h *HomeHandler) home(c *fiber.Ctx) error {
-	return c.SendString("Hello")
+	return fiber.NewError(fiber.StatusBadRequest, "Limit params is undefined")
 }
 
 // Хэндлер для страницы error
