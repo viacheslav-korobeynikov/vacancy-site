@@ -17,6 +17,11 @@ go run cmd/main.go
 go get github.com/gofiber/fiber/v2
 ```
 
+## Пакет для работы с .env
+```
+go get github.com/joho/godotenv
+```
+
 # Команды Git
 
 ## Инициализация локального репозитория
