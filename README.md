@@ -22,6 +22,16 @@ go get github.com/gofiber/fiber/v2
 go get github.com/joho/godotenv
 ```
 
+## Zerolog (библиотека работы с логами)
+```
+go get -u github.com/rs/zerolog/log
+```
+
+## Установка fiberzerolog
+```
+go get -u github.com/gofiber/contrib/fiberzerolog
+```
+
 # Команды Git
 
 ## Инициализация локального репозитория

@@ -2,19 +2,19 @@ package home
 
 import (
 	"github.com/gofiber/fiber/v2"
+	"github.com/rs/zerolog"
 )
 
 type HomeHandler struct {
-	router fiber.Router
+	router       fiber.Router
+	customLogger *zerolog.Logger
 }
 
-// /api/
-// /api/error
-
 // Функция конструктор
-func NewHandler(router fiber.Router) {
+func NewHandler(router fiber.Router, customLogger *zerolog.Logger) {
 	h := &HomeHandler{
-		router: router,
+		router:       router,
+		customLogger: customLogger,
 	}
 	// Группы роутов
 	api := h.router.Group("/api") // Добавление группы роутов, вторым параметром можно добавить middleware ко всей группе
@@ -29,5 +29,10 @@ func (h *HomeHandler) home(c *fiber.Ctx) error {
 
 // Хэндлер для страницы error
 func (h *HomeHandler) error(c *fiber.Ctx) error {
+	h.customLogger.Info().
+		Bool("isAdmin", true).
+		Str("email", "a@a.ru").
+		Int("id", 13).
+		Msg("Информационный лог")
 	return c.SendString("Error")
 }

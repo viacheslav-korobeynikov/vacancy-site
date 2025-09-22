@@ -74,12 +74,14 @@ func NewDatabaseConfig() *DatabaseConfig {
 
 // Структура кофига логов
 type LogConfig struct {
-	Level int
+	Level  int
+	Format string
 }
 
 // Извление конфига БД из переменной окружения
 func NewLogConfig() *LogConfig {
 	return &LogConfig{
-		Level: getInt("LOG_LEVEL", 0),
+		Level:  getInt("LOG_LEVEL", 0),
+		Format: getString("LOG_FORMAT", "json"),
 	}
 }
