@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	config.Init()
+	config.Init()                        // Получение данных из файла конфигурации
 	dbConf := config.NewDatabaseConfig() // Вызов конфигурации БД
 	log.Println(dbConf)
 	app := fiber.New() // Создание инстанса приложения Fiber
