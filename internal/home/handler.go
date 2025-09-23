@@ -18,15 +18,13 @@ func NewHandler(router fiber.Router, customLogger *zerolog.Logger) {
 		router:       router,
 		customLogger: customLogger,
 	}
-	// Группы роутов
-	api := h.router.Group("/api") // Добавление группы роутов, вторым параметром можно добавить middleware ко всей группе
-	api.Get("/", h.home)          // При Get запросе по адресу / вызываем функцию home
-	api.Get("/error", h.error)
+	h.router.Get("/", h.home) // При Get запросе по адресу / вызываем функцию home
+	h.router.Get("/404", h.error)
 }
 
 // Хэндлер для главной страницы
 func (h *HomeHandler) home(c *fiber.Ctx) error {
-	component := views.Hello("Anton")
+	component := views.Main()
 	return templadapter.Render(c, component)
 }
 
