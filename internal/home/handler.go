@@ -1,6 +1,9 @@
 package home
 
 import (
+	"bytes"
+	"text/template"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/rs/zerolog"
 )
@@ -24,7 +27,17 @@ func NewHandler(router fiber.Router, customLogger *zerolog.Logger) {
 
 // Хэндлер для главной страницы
 func (h *HomeHandler) home(c *fiber.Ctx) error {
-	return fiber.NewError(fiber.StatusBadRequest, "Limit params is undefined")
+	tmpl, err := template.New("test").Parse("{{.Count}} - число пользователей") // Шаблон
+	data := struct{ Count int }{Count: 1}                                       // Набор данных для подстановки
+	if err != nil {
+		return fiber.NewError(fiber.StatusBadRequest, "Template error")
+	}
+	var tpl bytes.Buffer
+	// Формируем шаблон
+	if err := tmpl.Execute(&tpl, data); err != nil {
+		return fiber.NewError(fiber.StatusBadRequest, "Template compile error")
+	}
+	return c.Send(tpl.Bytes())
 }
 
 // Хэндлер для страницы error
