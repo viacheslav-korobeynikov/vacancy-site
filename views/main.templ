@@ -1,11 +1,15 @@
 package views
 
 import "github.com/viacheslav-korobeynikov/vacancy-site/views/components"
+import "github.com/viacheslav-korobeynikov/vacancy-site/views/layout"
 
 templ Main() {
-  <main>
-  @components.Title(components.TitleProps{
-    Title: "Найди работу своей мечты",
-  }) 
-  Main</main>
+	<main>
+		@layout.Header() {
+			@components.Title(components.TitleProps{
+				Title: "Найди работу своей мечты",
+			})
+		}
+		Main
+	</main>
 }
