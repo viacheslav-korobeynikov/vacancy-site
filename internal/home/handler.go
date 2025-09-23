@@ -3,6 +3,8 @@ package home
 import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/rs/zerolog"
+	"github.com/viacheslav-korobeynikov/vacancy-site/pkg/templadapter"
+	"github.com/viacheslav-korobeynikov/vacancy-site/views"
 )
 
 type HomeHandler struct {
@@ -24,8 +26,8 @@ func NewHandler(router fiber.Router, customLogger *zerolog.Logger) {
 
 // Хэндлер для главной страницы
 func (h *HomeHandler) home(c *fiber.Ctx) error {
-	users := []string{"Anton", "Vasya"}
-	return c.Render("page", users) // Рендер страницы HTML
+	component := views.Hello("Anton")
+	return templadapter.Render(c, component)
 }
 
 // Хэндлер для страницы error
