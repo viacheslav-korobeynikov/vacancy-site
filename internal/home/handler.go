@@ -24,11 +24,8 @@ func NewHandler(router fiber.Router, customLogger *zerolog.Logger) {
 
 // Хэндлер для главной страницы
 func (h *HomeHandler) home(c *fiber.Ctx) error {
-	data := struct {
-		Count   int
-		IsAdmin bool
-	}{Count: 1, IsAdmin: true} // Набор данных для подстановки
-	return c.Render("page", data) // Рендер страницы HTML
+	users := []string{"Anton", "Vasya"}
+	return c.Render("page", users) // Рендер страницы HTML
 }
 
 // Хэндлер для страницы error

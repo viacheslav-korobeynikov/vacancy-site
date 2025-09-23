@@ -37,6 +37,16 @@ go get -u github.com/gofiber/contrib/fiberzerolog
 go get github.com/gofiber/template/html/v2
 ```
 
+## Установка Templ
+```
+go install github.com/a-h/templ/cmd/templ@latest
+```
+
+## Генерация шаблонов Templ
+```
+templ generate
+```
+
 # Команды Git
 
 ## Инициализация локального репозитория
