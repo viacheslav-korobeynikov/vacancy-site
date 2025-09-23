@@ -6,9 +6,8 @@ import "github.com/viacheslav-korobeynikov/vacancy-site/views/layout"
 templ Main() {
 	<main>
 		@layout.Header() {
-			@components.Title(components.TitleProps{
-				Title: "Найди работу своей мечты",
-			})
+			@components.Title("Найдите работу своей мечты")
+			@components.SubTitle("Простой поиск работы")
 		}
 		Main
 	</main>
