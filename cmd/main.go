@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/gofiber/contrib/fiberzerolog"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/template/html/v2"
 
 	"github.com/gofiber/fiber/v2/middleware/recover"
 	"github.com/viacheslav-korobeynikov/vacancy-site/config"
@@ -15,7 +16,10 @@ func main() {
 	config.NewDatabaseConfig()         // Вызов конфигурации БД
 	logConfig := config.NewLogConfig() // Вызов конфигурации логов
 	customLogger := logger.NewLogger(logConfig)
-	app := fiber.New() // Создание инстанса приложения Fiber
+	engine := html.New("./html", ".html") // Создаем движок для Fiber
+	app := fiber.New(fiber.Config{
+		Views: engine,
+	}) // Создание инстанса приложения Fiber
 
 	app.Use(fiberzerolog.New(fiberzerolog.Config{
 		Logger: customLogger,

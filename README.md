@@ -32,6 +32,11 @@ go get -u github.com/rs/zerolog/log
 go get -u github.com/gofiber/contrib/fiberzerolog
 ```
 
+## Установка шаблонов fiber
+```
+go get github.com/gofiber/template/html/v2
+```
+
 # Команды Git
 
 ## Инициализация локального репозитория
