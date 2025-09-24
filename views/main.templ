@@ -4,11 +4,16 @@ import "github.com/viacheslav-korobeynikov/vacancy-site/views/components"
 import "github.com/viacheslav-korobeynikov/vacancy-site/views/layout"
 
 templ Main() {
-	<main>
-		@layout.Header() {
-			@components.Title("Найдите работу своей мечты")
-			@components.SubTitle("Простой поиск работы")
-		}
-		Main
-	</main>
+	@layout.Layout(layout.LayoutProps{
+		Title:           "Найди работу мечты",
+		MetaDescription: "Сайт по поиску работы мечты",
+	}) {
+		<main>
+			@layout.Header() {
+				@components.Title("Найдите работу своей мечты")
+				@components.SubTitle("Простой поиск работы")
+			}
+			Main
+		</main>
+	}
 }
