@@ -53,6 +53,11 @@ templ generate
 go install github.com/air-verse/air@latest
 ```
 
+## Запуск Air
+```
+air
+```
+
 # Команды Git
 
 ## Инициализация локального репозитория
