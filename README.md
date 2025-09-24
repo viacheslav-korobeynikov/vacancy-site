@@ -46,6 +46,12 @@ go install github.com/a-h/templ/cmd/templ@latest
 ```
 templ generate
 ```
+# Air
+
+## Установка Air
+```
+go install github.com/air-verse/air@latest
+```
 
 # Команды Git
 
