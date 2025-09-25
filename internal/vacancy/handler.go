@@ -7,6 +7,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/rs/zerolog"
 	"github.com/viacheslav-korobeynikov/vacancy-site/pkg/templadapter"
+	"github.com/viacheslav-korobeynikov/vacancy-site/pkg/validator"
 	"github.com/viacheslav-korobeynikov/vacancy-site/views/components"
 )
 
@@ -35,7 +36,7 @@ func (h *VacancyHandler) createVacancy(c *fiber.Ctx) error {
 	var component templ.Component
 	// Если возникла хотя бы одна ошибка
 	if len(errors.Errors) > 0 {
-		component = components.Notification("Ошибки", components.NotificationFail)
+		component = components.Notification(validator.FormatErrors(errors), components.NotificationFail)
 		return templadapter.Render(c, component)
 	}
 	component = components.Notification("Вакансия успешно создана", components.NotificationSuccess)
