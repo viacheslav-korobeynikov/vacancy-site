@@ -2,6 +2,7 @@ package views
 
 import "github.com/viacheslav-korobeynikov/vacancy-site/views/components"
 import "github.com/viacheslav-korobeynikov/vacancy-site/views/layout"
+import "github.com/viacheslav-korobeynikov/vacancy-site/views/widgets"
 
 templ Main() {
 	@layout.Layout(layout.LayoutProps{
@@ -16,14 +17,7 @@ templ Main() {
 			}
 			Main
 			<div class="main__submit-form">
-				@components.Title2("Опубликовать вакансию")
-				@components.Input(components.InputProps{
-					Name:        "role",
-					Placeholder: "Должность",
-				})
-				@components.SubmitButton() {
-					<span>Отправить</span>
-				}
+				@widgets.VacancyForm()
 			</div>
 		</main>
 	}
@@ -32,7 +26,11 @@ templ Main() {
 templ MainStyle() {
 	<style>
   .main__submit-form {
-    background: rgba(48, 150, 137, 0.10)
+		display: flex;
+		align-items: center;
+		justify-content: center;
+    background: rgba(48, 150, 137, 0.10);
+		padding: 60px 0 120px 0;
   }
   </style>
 }
