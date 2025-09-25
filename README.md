@@ -37,6 +37,17 @@ go get -u github.com/gofiber/contrib/fiberzerolog
 go get github.com/gofiber/template/html/v2
 ```
 
+## Установка валидатора
+```
+go get github.com/gobuffalo/validate
+```
+
+```
+go get github.com/gobuffalo/validate/validators
+```
+
+# Templ
+
 ## Установка Templ
 ```
 go install github.com/a-h/templ/cmd/templ@latest
