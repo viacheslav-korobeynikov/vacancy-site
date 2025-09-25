@@ -105,7 +105,7 @@ func VacancyForm() templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<span>Опубликовать вакансию</span>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<div class=\"vacancy-form__submit\">Опубликовать вакансию</div><div class=\"vacancy-form__loader\"></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -144,7 +144,7 @@ func VacancyFormStyle() templ.Component {
 			templ_7745c5c3_Var3 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<style>\r\n  .vacany-form__text {\r\n    overflow: hidden;\r\n    color: var(--color-black);\r\n    text-align: center;\r\n    white-space: nowrap;\r\n    font-size: 16px;\r\n    font-weight: 400;\r\n    margin-bottom: 60px;\r\n  }\r\n  .vacancy-form{\r\n    max-width: 890px;\r\n    width: 100%;\r\n  }\r\n  .vacancy-form form {\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items:center;\r\n    justify-content:center;\r\n  }\r\n  .vacancy-form__inputs {\r\n    width: 100%;\r\n    display: grid;\r\n    grid-template-columns: 1fr 1fr;\r\n    gap: 30px 24px;\r\n    margin-bottom: 30px;\r\n  }\r\n  </style>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<style>\r\n  .vacany-form__text {\r\n    overflow: hidden;\r\n    color: var(--color-black);\r\n    text-align: center;\r\n    white-space: nowrap;\r\n    font-size: 16px;\r\n    font-weight: 400;\r\n    margin-bottom: 60px;\r\n  }\r\n  .vacancy-form{\r\n    max-width: 890px;\r\n    width: 100%;\r\n  }\r\n  .vacancy-form form {\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items:center;\r\n    justify-content:center;\r\n  }\r\n  .vacancy-form__inputs {\r\n    width: 100%;\r\n    display: grid;\r\n    grid-template-columns: 1fr 1fr;\r\n    gap: 30px 24px;\r\n    margin-bottom: 30px;\r\n  }\r\n\t.vacancy-form__loader{\r\n\t\tdisplay: none;\r\n\t}\r\n\t.htmx-request .vacancy-form__submit {\r\n\t\tdisplay: none;\r\n\t}\r\n\t/* HTML: <div class=\"loader\"></div> */\r\n\t.htmx-request .vacancy-form__loader {\r\n\t\tdisplay: block;\r\n  width: 50px;\r\n  padding: 8px;\r\n  aspect-ratio: 1;\r\n  border-radius: 50%;\r\n  background: #ffffff;\r\n  --_m: \r\n    conic-gradient(#0000 10%,#000),\r\n    linear-gradient(#000 0 0) content-box;\r\n  -webkit-mask: var(--_m);\r\n          mask: var(--_m);\r\n  -webkit-mask-composite: source-out;\r\n          mask-composite: subtract;\r\n  animation: l3 1s infinite linear;\r\n}\r\n@keyframes l3 {to{transform: rotate(1turn)}}\r\n  </style>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

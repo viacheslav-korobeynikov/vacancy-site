@@ -1,6 +1,8 @@
 package vacancy
 
 import (
+	"time"
+
 	"github.com/a-h/templ"
 	"github.com/gobuffalo/validate"
 	"github.com/gobuffalo/validate/validators"
@@ -33,6 +35,7 @@ func (h *VacancyHandler) createVacancy(c *fiber.Ctx) error {
 	errors := validate.Validate(
 		&validators.EmailIsPresent{Name: "Email", Field: form.Email, Message: "Email не задан или неверный"},
 	)
+	time.Sleep(time.Second * 2)
 	var component templ.Component
 	// Если возникла хотя бы одна ошибка
 	if len(errors.Errors) > 0 {
