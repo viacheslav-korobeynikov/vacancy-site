@@ -1,6 +1,7 @@
 package vacancy
 
 import (
+	"github.com/a-h/templ"
 	"github.com/gofiber/fiber/v2"
 	"github.com/rs/zerolog"
 	"github.com/viacheslav-korobeynikov/vacancy-site/pkg/templadapter"
@@ -23,7 +24,11 @@ func NewHandler(router fiber.Router, customLogger *zerolog.Logger) {
 
 func (h *VacancyHandler) createVacancy(c *fiber.Ctx) error {
 	email := c.FormValue("email")
-	h.customLogger.Info().Msg(email)
-	component := components.Notification("Вакансия успешно создана")
+	var component templ.Component
+	if email == "" {
+		component = components.Notification("Не указан email", components.NotificationFail)
+		return templadapter.Render(c, component)
+	}
+	component = components.Notification("Вакансия успешно создана", components.NotificationSuccess)
 	return templadapter.Render(c, component)
 }
