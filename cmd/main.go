@@ -31,8 +31,12 @@ func main() {
 	dbpool := database.CreateDbPool(dbConfig, customLogger)
 	defer dbpool.Close()
 
+	// Repositories
+	vacancyRepo := vacancy.NewVacancyRepository(dbpool, customLogger)
+
+	// Handlers
 	home.NewHandler(app, customLogger) // Добавили зависимость с хэндлером для главной страницы
-	vacancy.NewHandler(app, customLogger)
+	vacancy.NewHandler(app, customLogger, vacancyRepo)
 
 	app.Listen(":3000") //Настраиваем порт, который будем слушать
 }

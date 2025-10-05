@@ -14,12 +14,14 @@ import (
 type VacancyHandler struct {
 	router       fiber.Router
 	customLogger *zerolog.Logger
+	repository   *VacancyRepository
 }
 
-func NewHandler(router fiber.Router, customLogger *zerolog.Logger) {
+func NewHandler(router fiber.Router, customLogger *zerolog.Logger, repository *VacancyRepository) {
 	h := &VacancyHandler{
 		router:       router,
 		customLogger: customLogger,
+		repository:   repository,
 	}
 	vacancyGroup := h.router.Group("/vacancy") // Создаем группу роутов
 	vacancyGroup.Post("/", h.createVacancy)
@@ -49,6 +51,8 @@ func (h *VacancyHandler) createVacancy(c *fiber.Ctx) error {
 		component = components.Notification(validator.FormatErrors(errors), components.NotificationFail)
 		return templadapter.Render(c, component)
 	}
+	// Вызываем метод репозитория для создания вакансии
+	h.repository.addVacancy(form)
 	component = components.Notification("Вакансия успешно создана", components.NotificationSuccess)
 	return templadapter.Render(c, component)
 }
