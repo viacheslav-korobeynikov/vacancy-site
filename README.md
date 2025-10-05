@@ -46,6 +46,16 @@ go get github.com/gobuffalo/validate
 go get github.com/gobuffalo/validate/validators
 ```
 
+## Установка Pgx
+```
+go get github.com/jackc/pgx/v5
+```
+
+## Добавление пакета для создания connection pool
+```
+go get github.com/jackc/pgx/v5/pgxpool
+```
+
 # Templ
 
 ## Установка Templ

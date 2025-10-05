@@ -8,13 +8,15 @@ import (
 	"github.com/viacheslav-korobeynikov/vacancy-site/config"
 	"github.com/viacheslav-korobeynikov/vacancy-site/internal/home"
 	"github.com/viacheslav-korobeynikov/vacancy-site/internal/vacancy"
+	"github.com/viacheslav-korobeynikov/vacancy-site/pkg/database"
 	"github.com/viacheslav-korobeynikov/vacancy-site/pkg/logger"
 )
 
 func main() {
-	config.Init()                      // Получение данных из файла конфигурации
-	config.NewDatabaseConfig()         // Вызов конфигурации БД
-	logConfig := config.NewLogConfig() // Вызов конфигурации логов
+	config.Init()                          // Получение данных из файла конфигурации
+	config.NewDatabaseConfig()             // Вызов конфигурации БД
+	logConfig := config.NewLogConfig()     // Вызов конфигурации логов
+	dbConfig := config.NewDatabaseConfig() //
 	customLogger := logger.NewLogger(logConfig)
 
 	app := fiber.New() // Создание инстанса приложения Fiber
@@ -26,6 +28,8 @@ func main() {
 	app.Use(recover.New()) // Middleware, который перезапускает приложение в случае, если произошел вызов panic
 
 	app.Static("/public", "./public") // Обработчик статики (публичных файлов)
+	dbpool := database.CreateDbPool(dbConfig, customLogger)
+	defer dbpool.Close()
 
 	home.NewHandler(app, customLogger) // Добавили зависимость с хэндлером для главной страницы
 	vacancy.NewHandler(app, customLogger)
