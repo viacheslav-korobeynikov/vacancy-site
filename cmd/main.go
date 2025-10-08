@@ -13,8 +13,8 @@ import (
 )
 
 func main() {
-	config.Init()                          // Получение данных из файла конфигурации
-	config.NewDatabaseConfig()             // Вызов конфигурации БД
+	config.Init() // Получение данных из файла конфигурации
+	//config.NewDatabaseConfig()             // Вызов конфигурации БД
 	logConfig := config.NewLogConfig()     // Вызов конфигурации логов
 	dbConfig := config.NewDatabaseConfig() //
 	customLogger := logger.NewLogger(logConfig)

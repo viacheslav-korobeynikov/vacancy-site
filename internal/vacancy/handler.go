@@ -52,7 +52,12 @@ func (h *VacancyHandler) createVacancy(c *fiber.Ctx) error {
 		return templadapter.Render(c, component)
 	}
 	// Вызываем метод репозитория для создания вакансии
-	h.repository.addVacancy(form)
+	err := h.repository.addVacancy(form)
+	if err != nil {
+		h.customLogger.Error().Msg(err.Error())
+		component = components.Notification("Произошла ошибка на сервере, попробуйте позже", components.NotificationFail)
+		return templadapter.Render(c, component)
+	}
 	component = components.Notification("Вакансия успешно создана", components.NotificationSuccess)
 	return templadapter.Render(c, component)
 }
