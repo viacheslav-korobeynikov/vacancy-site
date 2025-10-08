@@ -1,12 +1,12 @@
 services:
   postgres:
-    container_name: vacancy_site_db
+    container_name: potgres_db
     image: postgres:16.4
     volumes:
       - pgdata:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD: admin
       PGDATA: /data/postgres
     ports:
       - "5432:5432"
