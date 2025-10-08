@@ -1,6 +1,8 @@
 package vacancy
 
 import (
+	"net/http"
+
 	"github.com/a-h/templ"
 	"github.com/gobuffalo/validate"
 	"github.com/gobuffalo/validate/validators"
@@ -49,15 +51,15 @@ func (h *VacancyHandler) createVacancy(c *fiber.Ctx) error {
 	// Если возникла хотя бы одна ошибка
 	if len(errors.Errors) > 0 {
 		component = components.Notification(validator.FormatErrors(errors), components.NotificationFail)
-		return templadapter.Render(c, component)
+		return templadapter.Render(c, component, http.StatusBadRequest)
 	}
 	// Вызываем метод репозитория для создания вакансии
 	err := h.repository.addVacancy(form)
 	if err != nil {
 		h.customLogger.Error().Msg(err.Error())
 		component = components.Notification("Произошла ошибка на сервере, попробуйте позже", components.NotificationFail)
-		return templadapter.Render(c, component)
+		return templadapter.Render(c, component, http.StatusBadRequest)
 	}
 	component = components.Notification("Вакансия успешно создана", components.NotificationSuccess)
-	return templadapter.Render(c, component)
+	return templadapter.Render(c, component, http.StatusOK)
 }

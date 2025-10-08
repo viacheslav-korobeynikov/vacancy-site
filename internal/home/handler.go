@@ -1,6 +1,8 @@
 package home
 
 import (
+	"net/http"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/rs/zerolog"
 	"github.com/viacheslav-korobeynikov/vacancy-site/pkg/templadapter"
@@ -25,7 +27,7 @@ func NewHandler(router fiber.Router, customLogger *zerolog.Logger) {
 // Хэндлер для главной страницы
 func (h *HomeHandler) home(c *fiber.Ctx) error {
 	component := views.Main()
-	return templadapter.Render(c, component)
+	return templadapter.Render(c, component, http.StatusOK)
 }
 
 // Хэндлер для страницы error

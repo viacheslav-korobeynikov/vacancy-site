@@ -7,6 +7,6 @@ import (
 )
 
 // Адаптер между Templ и Fiber
-func Render(c *fiber.Ctx, component templ.Component) error {
-	return adaptor.HTTPHandler(templ.Handler(component))(c)
+func Render(c *fiber.Ctx, component templ.Component, code int) error {
+	return adaptor.HTTPHandler(templ.Handler(component, templ.WithStatus(code)))(c)
 }
