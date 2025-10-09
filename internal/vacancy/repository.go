@@ -3,6 +3,7 @@ package vacancy
 import (
 	"context"
 	"fmt"
+	"time"
 
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
@@ -25,7 +26,7 @@ func NewVacancyRepository(dbpool *pgxpool.Pool, customLogger *zerolog.Logger) *V
 
 // Метод добавления вакансии
 func (r *VacancyRepository) addVacancy(form VacancyCreateForm) error {
-	query := `INSERT INTO vacancies (email, role, company, salary, type, location) VALUES (@email, @role, @company, @salary, @type, @location)`
+	query := `INSERT INTO vacancies (email, role, company, salary, type, location, created_at) VALUES (@email, @role, @company, @salary, @type, @location, @created_at)`
 	args := pgx.NamedArgs{
 		"email":    form.Email,
 		"role":     form.Role,
@@ -33,6 +34,7 @@ func (r *VacancyRepository) addVacancy(form VacancyCreateForm) error {
 		"salary":   form.Salary,
 		"type":     form.Type,
 		"location": form.Location,
+		"created_at": time.Now(),
 	}
 	_, err := r.Dbpool.Exec(context.Background(), query, args)
 	if err != nil {
